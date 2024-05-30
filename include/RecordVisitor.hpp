@@ -17,4 +17,5 @@ class RecordVisitor {
   virtual void visit(const class Sensor &a) const {};
   virtual void visit(const class Translation &a) const {};
   virtual void visit(const class Visibility &a) const {};
+  virtual void visit(const class Camera_intrinsic &a) const {};
 };

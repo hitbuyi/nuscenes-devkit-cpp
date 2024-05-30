@@ -1,11 +1,14 @@
 #pragma once
 
 #include <string>
+#include <iostream>
+#include <any>
 
 #include "Record.hpp"
 #include "RecordVisitor.hpp"
 #include "Rotation.hpp"
 #include "Translation.hpp"
+#include "Camera_intrinsic.hpp"
 #include "nlohmann/json.hpp"
 
 class Sensor;
@@ -20,7 +23,7 @@ class CalibratedSensor : public Record {
   std::string sensor_token;
   Translation translation;
   Rotation rotation;
-
+  Camera_intrinsic camera_intrinsic;
   Sensor *sensor = nullptr;
 
  public:
@@ -28,6 +31,7 @@ class CalibratedSensor : public Record {
   const std::string &get_sensor_token() const;
   const Translation &get_translation() const;
   const Rotation &get_rotation() const;
+  const Camera_intrinsic &get_camera_intrinsic() const;
 
   const Sensor &get_sensor() const;
 
@@ -42,5 +46,7 @@ class CalibratedSensor : public Record {
   CalibratedSensor(const json &);
   CalibratedSensor(const std::string &, const std::string &,
                    const Translation &, const Rotation &);
+  CalibratedSensor(const std::string &, const std::string &,
+                   const Translation &, const Rotation &,const Camera_intrinsic &);
   ~CalibratedSensor() = default;
 };
